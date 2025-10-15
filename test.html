@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Page</title>
+</head>
+<body>
+    <h1>Testing localStorage</h1>
+    <button onclick="testAdd()">Test Add</button>
+    <button onclick="testSearch()">Test Search</button>
+    <button onclick="testView()">Test View All</button>
+    <div id="output"></div>
+
+    <script>
+        function testAdd() {
+            const student = {
+                prn: 'B24CE1046',
+                name: 'Parth Kshirsagar',
+                courses: [
+                    { code: 'CSE101', name: 'DSA', marks: 85, maxMarks: 100 },
+                    { code: 'CSE102', name: 'OOP', marks: 90, maxMarks: 100 }
+                ],
+                percentage: 87.5,
+                grade: 'A'
+            };
+            
+            let students = JSON.parse(localStorage.getItem('students') || '[]');
+            students.push(student);
+            localStorage.setItem('students', JSON.stringify(students));
+            
+            document.getElementById('output').innerHTML = 'Student added! Check console.';
+            console.log('Added:', student);
+        }
+
+        function testSearch() {
+            const students = JSON.parse(localStorage.getItem('students') || '[]');
+            document.getElementById('output').innerHTML = 'Found ' + students.length + ' students. Check console.';
+            console.log('All students:', students);
+        }
+
+        function testView() {
+            const students = JSON.parse(localStorage.getItem('students') || '[]');
+            document.getElementById('output').innerHTML = '<pre>' + JSON.stringify(students, null, 2) + '</pre>';
+        }
+    </script>
+</body>
+</html>

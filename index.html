@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Result Management System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Animated Background Particles -->
+    <div class="particles">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Header with Animation -->
+        <header class="header">
+            <div class="logo-container">
+                <div class="logo-circle">
+                    <span class="logo-icon">🎓</span>
+                </div>
+                <div class="logo-text">
+                    <h1>Student Result Portal</h1>
+                    <p class="tagline">Excellence in Academic Management</p>
+                </div>
+            </div>
+        </header>
+
+        <!-- Navigation Tabs -->
+        <nav class="nav-tabs">
+            <button class="tab-btn active" data-tab="add">
+                <span class="tab-icon">➕</span>
+                <span>Add Result</span>
+            </button>
+            <button class="tab-btn" data-tab="search">
+                <span class="tab-icon">🔍</span>
+                <span>Search PRN</span>
+            </button>
+            <button class="tab-btn" data-tab="classmate">
+                <span class="tab-icon">👥</span>
+                <span>Classmates</span>
+            </button>
+            <button class="tab-btn" data-tab="view">
+                <span class="tab-icon">📊</span>
+                <span>All Results</span>
+            </button>
+            <button class="tab-btn" data-tab="cgpa">
+                <span class="tab-icon">🎯</span>
+                <span>CGPA Predictor</span>
+            </button>
+        </nav>
+
+        <!-- Tab Content -->
+        <div class="tab-content">
+            <!-- Add Student Tab -->
+            <div class="tab-pane active" id="add">
+                <div class="card">
+                    <div class="card-header">
+                        <h2><span class="icon">📝</span> Add New Student Result</h2>
+                    </div>
+                    <div class="card-body">
+                        <form id="addForm">
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="prn">PRN Number <span class="required">*</span></label>
+                                    <input type="text" id="prn" name="prn" placeholder="e.g., B24CE1046" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="studentName">Student Name <span class="required">*</span></label>
+                                    <input type="text" id="studentName" name="studentName" placeholder="Enter full name" required>
+                                </div>
+                            </div>
+
+                            <div class="courses-section">
+                                <h3><span class="icon">📚</span> Course Details</h3>
+                                <div id="coursesContainer">
+                                    <!-- Course 1 -->
+                                    <div class="course-card">
+                                        <div class="course-header">
+                                            <h4>Course 1</h4>
+                                        </div>
+                                        <div class="form-grid">
+                                            <div class="form-group">
+                                                <label>Course Code</label>
+                                                <input type="text" class="courseCode" placeholder="e.g., CSE101" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Course Name</label>
+                                                <input type="text" class="courseName" placeholder="e.g., Data Structures" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Marks Obtained</label>
+                                                <input type="number" class="courseMarks" min="0" placeholder="Marks" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Maximum Marks</label>
+                                                <input type="number" class="courseMaxMarks" min="1" placeholder="Max Marks" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button type="button" class="btn btn-secondary" onclick="addCourse()">
+                                    <span>➕</span> Add Another Course
+                                </button>
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-primary">
+                                    <span>✓</span> Calculate & Save Result
+                                </button>
+                                <button type="reset" class="btn btn-secondary">
+                                    <span>↻</span> Reset Form
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Search PRN Tab -->
+            <div class="tab-pane" id="search">
+                <div class="card">
+                    <div class="card-header">
+                        <h2><span class="icon">🔎</span> Search Student Result</h2>
+                    </div>
+                    <div class="card-body">
+                        <form id="searchForm">
+                            <div class="search-container">
+                                <input type="text" id="searchPRN" placeholder="Enter PRN Number (e.g., B24CE1046)" required>
+                                <button type="submit" class="btn btn-search">
+                                    <span>🔍</span> Search
+                                </button>
+                            </div>
+                        </form>
+                        <div id="searchResult" class="result-display"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Classmates Tab -->
+            <div class="tab-pane" id="classmate">
+                <div class="card">
+                    <div class="card-header">
+                        <h2><span class="icon">👥</span> Classmate Percentage Lookup</h2>
+                    </div>
+                    <div class="card-body">
+                        <form id="classmateSearchForm">
+                            <div class="search-container">
+                                <input type="text" id="classmatePRN" placeholder="Enter PRN Number" required>
+                                <button type="submit" class="btn btn-search">
+                                    <span>🔍</span> Search
+                                </button>
+                            </div>
+                        </form>
+                        <div id="classmateResult" class="result-display"></div>
+                        
+                        <div class="stats-section">
+                            <h3><span class="icon">📈</span> Classmate Statistics</h3>
+                            <div id="classmateStats" class="stats-grid"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- View All Tab -->
+            <div class="tab-pane" id="view">
+                <div class="card">
+                    <div class="card-header">
+                        <h2><span class="icon">📋</span> All Saved Results</h2>
+                        <button class="btn btn-secondary" onclick="loadAllResults()">
+                            <span>🔄</span> Refresh
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        <div id="allResults" class="results-grid"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CGPA Predictor Tab -->
+            <div class="tab-pane" id="cgpa">
+                <div class="card">
+                    <div class="card-header">
+                        <h2><span class="icon">🎯</span> CGPA Predictor</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="cgpa-redirect">
+                            <div class="redirect-icon">📊</div>
+                            <h3>Predict Your CGPA</h3>
+                            <p>Fill out the form to get an accurate prediction of your CGPA based on your current performance.</p>
+                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSeyLKEhTX-OKPNZQDrYMU3ooTZN5r8GPjwbQK_VDMYrh60WQw/viewform?usp=header" 
+                               target="_blank" 
+                               class="btn btn-primary btn-lg">
+                                <span>🚀</span> Open CGPA Predictor Form
+                            </a>
+                            <p class="redirect-note">* Opens in a new tab</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <!-- Loading Spinner -->
+    <div id="loading" class="loading">
+        <div class="spinner"></div>
+    </div>
+
+    <script src="script_backend.js"></script>
+</body>
+</html>

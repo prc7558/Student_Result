@@ -1,0 +1,45 @@
+---------------------------------------------
+Student PRN: 26
+Student Name: Balraj
+Courses:
+  001 - DSA : 10/16
+  002 - OOP : 5/16
+  DECO - DECO : 6/16
+  004 - MDM : 16/16
+Percentage: 57.81%
+Grade: D
+---------------------------------------------
+
+---------------------------------------------
+Student PRN: 50
+Student Name: Parth
+Courses:
+  001 - OOP : 13/16
+  002 - DSA : 16/16
+  003 - DECO : 11/16
+  004 - MDM : 15/16
+Percentage: 85.94%
+Grade: B
+---------------------------------------------
+
+---------------------------------------------
+Student PRN: B24CE1046
+Student Name: Parth Kshirsagar
+Courses:
+  CSE101 - OOP : 85/100
+  CSE102 - DSA : 90/100
+  CSE103 - MDM : 88/100
+Percentage: 87.67%
+Grade: B
+---------------------------------------------
+
+---------------------------------------------
+Student PRN: B24CE1049
+Student Name: Isha
+Courses:
+  CSE111 - MDM : 25/30
+  CSE115 - DECO : 20/25
+Percentage: 81.82%
+Grade: B
+---------------------------------------------
+
